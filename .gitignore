@@ -1,0 +1,13 @@
+﻿# Altium Designer specific
+*.SchDocPreview
+*.PcbDocPreview
+*.SchDoc.Zip
+History/
+__Previews/
+Project Logs*/
+Project Outputs*/
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.bak
