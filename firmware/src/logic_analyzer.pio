@@ -1,0 +1,39 @@
+﻿;
+; RP2040 PIO Logic Analyzer Sampling Program
+; Captures 8 consecutive GPIO channels (GPIO0 - GPIO7) in 1 clock cycle
+;
+
+.program logic_analyzer
+.wrap_target
+    in pins, 8
+.wrap
+
+% c-sdk {
+#include hardware/clocks.h
+#include hardware/gpio.h
+
+static inline void logic_analyzer_program_init(PIO pio, uint sm, uint offset, uint pin_base, float div) {
+    pio_sm_config c = logic_analyzer_program_get_default_config(offset);
+    
+    // Set 'in' pins starting from pin_base (GPIO0)
+    sm_config_set_in_pins(&c, pin_base);
+    
+    // Configure consecutive 8 pins for PIO input
+    for (int i = 0; i < 8; i++) {
+        pio_gpio_init(pio, pin_base + i);
+        gpio_set_pulls(pin_base + i, false, false); // Rely on external buffer / pullups
+    }
+    pio_sm_set_consecutive_pindirs(pio, sm, pin_base, 8, false); // Inputs
+    
+    // Configure ISR: Shift in left, autopush after 32 bits (4 samples of 8 channels)
+    sm_config_set_in_shift(&c, true, true, 32);
+    
+    // Set clock divider for desired sample rate
+    sm_config_set_clkdiv(&c, div);
+    
+    // Join FIFOs to make a deep 8-word RX FIFO
+    sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_RX);
+    
+    pio_sm_init(pio, sm, offset, &c);
+}
+%}
