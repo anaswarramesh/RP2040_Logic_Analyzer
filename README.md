@@ -69,9 +69,37 @@ flowchart LR
 
 ---
 
-## 💻 Firmware Architecture & Code Structure
+## 📌 Hardware Pinout & Peripheral Mapping
 
-The firmware is located in the **[/firmware](firmware/)** folder and is built on the **Raspberry Pi Pico C/C++ SDK**. It leverages the dual-core architecture and hardware DMA to run real-time capture and 33 FPS UI rendering in parallel without dropping samples.
+| Subsystem | Signal Name | RP2040 Pin | Buffer / Module Pin | Firmware Mapping | Description |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Logic Probes** | RP_LOGIC_0 | **GPIO0** (Pin 2) | 74LVC245A B0 (Pin 18) | LOGIC_PIN_BASE + 0 | Channel 0 Input (I2C SDA / UART RX) |
+| **Logic Probes** | RP_LOGIC_1 | **GPIO1** (Pin 3) | 74LVC245A B1 (Pin 17) | LOGIC_PIN_BASE + 1 | Channel 1 Input (I2C SCL / UART TX) |
+| **Logic Probes** | RP_LOGIC_2 | **GPIO2** (Pin 4) | 74LVC245A B2 (Pin 16) | LOGIC_PIN_BASE + 2 | Channel 2 Input (SPI SCK) |
+| **Logic Probes** | RP_LOGIC_3 | **GPIO3** (Pin 5) | 74LVC245A B3 (Pin 15) | LOGIC_PIN_BASE + 3 | Channel 3 Input (SPI MOSI) |
+| **Logic Probes** | RP_LOGIC_4 | **GPIO4** (Pin 6) | 74LVC245A B4 (Pin 14) | LOGIC_PIN_BASE + 4 | Channel 4 Input (SPI MISO) |
+| **Logic Probes** | RP_LOGIC_5 | **GPIO5** (Pin 7) | 74LVC245A B5 (Pin 13) | LOGIC_PIN_BASE + 5 | Channel 5 Input (SPI /CS) |
+| **Logic Probes** | RP_LOGIC_6 | **GPIO6** (Pin 8) | 74LVC245A B6 (Pin 12) | LOGIC_PIN_BASE + 6 | Channel 6 Input (Trigger / General) |
+| **Logic Probes** | RP_LOGIC_7 | **GPIO7** (Pin 9) | 74LVC245A B7 (Pin 11) | LOGIC_PIN_BASE + 7 | Channel 7 Input (Clock / General) |
+| **Display SPI** | LCD_SCK | **GPIO10** (Pin 13) | ST7789 SCL (Pin 3) | PIN_LCD_SCK (SPI1) | High-Speed SPI1 Clock (62.5MHz) |
+| **Display SPI** | LCD_MOSI | **GPIO11** (Pin 14) | ST7789 SDA (Pin 4) | PIN_LCD_MOSI (SPI1)| SPI1 Master Out Data |
+| **Display Control**| LCD_CS | **GPIO13** (Pin 16) | ST7789 CS (Pin 7) | PIN_LCD_CS | Active-Low Chip Select |
+| **Display Control**| LCD_DC | **GPIO14** (Pin 17) | ST7789 DC (Pin 6) | PIN_LCD_DC | Data / Command Selection |
+| **Display Control**| LCD_RST | **GPIO15** (Pin 18) | ST7789 RES (Pin 5) | PIN_LCD_RST | Hardware Display Reset |
+| **Display Control**| LCD_BL | **GPIO27** (Pin 31) | 2N7002 Gate | PIN_LCD_BL | PWM Backlight Dimming |
+| **UI Navigation** | NAV_UP | **GPIO16** (Pin 27) | Joystick UP | PIN_NAV_UP | Channel Select / Cursor Up |
+| **UI Navigation** | NAV_DOWN | **GPIO17** (Pin 28) | Joystick DOWN | PIN_NAV_DOWN | Channel Select / Cursor Down |
+| **UI Navigation** | NAV_LEFT | **GPIO18** (Pin 29) | Joystick LEFT | PIN_NAV_LEFT | Timebase Zoom Out (\,\mu\text{s} \rightarrow 100\,\text{ms}$) |
+| **UI Navigation** | NAV_RIGHT | **GPIO19** (Pin 30) | Joystick RIGHT | PIN_NAV_RIGHT | Timebase Zoom In (\,\text{ms} \rightarrow 1\,\mu\text{s}$) |
+| **UI Navigation** | NAV_ENTER | **GPIO28** (Pin 32) | Joystick CENTER | PIN_NAV_ENTER | RUN / STOP / Single-Shot Capture |
+| **USB 2.0** | USB_DP / DM | **Pins 47 / 46** | USBLC6-2SC6 / J1 | TinyUSB Driver | Full-Speed USB Data Pair (90Ω Diff) |
+| **QSPI Flash** | QSPI_SD0..3 | **Pins 51..56** | W25Q128JV | Bootrom / Flash XIP | 16MB High-Speed Flash Bus |
+
+---
+
+## 💻 Firmware Architecture & Directory Layout
+
+The firmware source files are structured in the **[/firmware](firmware/)** folder:
 
 `
 firmware/
@@ -87,49 +115,21 @@ firmware/
     └── sigrok_protocol.c / .h  # SUMP protocol for PulseView/Sigrok over USB CDC
 `
 
-### Dual-Core Task Division
+### Dual-Core Processing Architecture
 * **Core 0 (Capture & USB Engine):**
   * Manages the PIO state machine and DMA buffer transfers.
-  * Listens on USB CDC for SUMP commands from PC software (Sigrok / PulseView).
-  * Automatically re-arms continuous capture cycles when running in standalone mode.
+  * Processes USB CDC communication and SUMP commands from PC logic software.
+  * Re-arms continuous capture cycles in standalone mode.
 * **Core 1 (Graphics & UI Loop):**
-  * Exclusively manages the 2.4 \times240$ ST7789 IPS display over SPI1.
- * Polls the 5-way navigation joystick with software debouncing.
- * Renders 8 digital waveform traces, timebase grid, cursors, and protocol decode text at ~33 FPS.
-
----
-
-## 🔍 Hardware-to-Firmware Pin Verification Matrix
-
-All pins in the schematic design have been 100% matched and verified against the firmware source code:
-
-| Function | Signal Name | Schematic Pin | Firmware Definition | Target File | Verification Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Logic Probe 0** | RP_LOGIC_0 | **GPIO0** (Pin 2) | LOGIC_PIN_BASE + 0 | capture.h / logic_analyzer.pio | ✅ Verified (PIO IN Pin 0) |
-| **Logic Probe 1** | RP_LOGIC_1 | **GPIO1** (Pin 3) | LOGIC_PIN_BASE + 1 | capture.h / logic_analyzer.pio | ✅ Verified (PIO IN Pin 1) |
-| **Logic Probe 2** | RP_LOGIC_2 | **GPIO2** (Pin 4) | LOGIC_PIN_BASE + 2 | capture.h / logic_analyzer.pio | ✅ Verified (PIO IN Pin 2) |
-| **Logic Probe 3** | RP_LOGIC_3 | **GPIO3** (Pin 5) | LOGIC_PIN_BASE + 3 | capture.h / logic_analyzer.pio | ✅ Verified (PIO IN Pin 3) |
-| **Logic Probe 4** | RP_LOGIC_4 | **GPIO4** (Pin 6) | LOGIC_PIN_BASE + 4 | capture.h / logic_analyzer.pio | ✅ Verified (PIO IN Pin 4) |
-| **Logic Probe 5** | RP_LOGIC_5 | **GPIO5** (Pin 7) | LOGIC_PIN_BASE + 5 | capture.h / logic_analyzer.pio | ✅ Verified (PIO IN Pin 5) |
-| **Logic Probe 6** | RP_LOGIC_6 | **GPIO6** (Pin 8) | LOGIC_PIN_BASE + 6 | capture.h / logic_analyzer.pio | ✅ Verified (PIO IN Pin 6) |
-| **Logic Probe 7** | RP_LOGIC_7 | **GPIO7** (Pin 9) | LOGIC_PIN_BASE + 7 | capture.h / logic_analyzer.pio | ✅ Verified (PIO IN Pin 7) |
-| **LCD SPI Clock** | LCD_SCK | **GPIO10** (Pin 13) | PIN_LCD_SCK (10) | st7789.h | ✅ Verified (SPI1 SCK) |
-| **LCD SPI MOSI** | LCD_MOSI | **GPIO11** (Pin 14) | PIN_LCD_MOSI (11) | st7789.h | ✅ Verified (SPI1 TX) |
-| **LCD Chip Select**| LCD_CS | **GPIO13** (Pin 16) | PIN_LCD_CS (13) | st7789.h | ✅ Verified (GPIO Output) |
-| **LCD Data/Command**| LCD_DC | **GPIO14** (Pin 17) | PIN_LCD_DC (14) | st7789.h | ✅ Verified (GPIO Output) |
-| **LCD Reset** | LCD_RST | **GPIO15** (Pin 18) | PIN_LCD_RST (15) | st7789.h | ✅ Verified (GPIO Output) |
-| **LCD Backlight** | LCD_BL | **GPIO27** (Pin 31) | PIN_LCD_BL (27) | st7789.h | ✅ Verified (PWM Slice 5B) |
-| **Joystick UP** | NAV_UP | **GPIO16** (Pin 27) | PIN_NAV_UP (16) | ui.h | ✅ Verified (Internal Pull-up) |
-| **Joystick DOWN** | NAV_DOWN | **GPIO17** (Pin 28) | PIN_NAV_DOWN (17) | ui.h | ✅ Verified (Internal Pull-up) |
-| **Joystick LEFT** | NAV_LEFT | **GPIO18** (Pin 29) | PIN_NAV_LEFT (18) | ui.h | ✅ Verified (Internal Pull-up) |
-| **Joystick RIGHT**| NAV_RIGHT| **GPIO19** (Pin 30) | PIN_NAV_RIGHT (19)| ui.h | ✅ Verified (Internal Pull-up) |
-| **Joystick PUSH** | NAV_ENTER| **GPIO28** (Pin 32) | PIN_NAV_ENTER (28)| ui.h | ✅ Verified (Internal Pull-up) |
+  * Drives the 2.4 \times240$ ST7789 IPS display over hardware SPI1.
+ * Polls the 5-way navigation joystick with debouncing.
+ * Renders 8 digital waveform traces, timebase grid, cursors, and protocol decode banner at ~33 FPS.
 
 ---
 
 ## 🗂️ Altium Designer Project Structure
 
-This project uses a **Hierarchical Schematic Architecture** to enforce clean modular design and strict electrical rule checking:
+This project uses a **Hierarchical Schematic Architecture** to enforce modular design:
 
 `
 RP2040_Logic_Analyzer.PrjPcb
@@ -172,12 +172,12 @@ mkdir build && cd build
 cmake -DPICO_SDK_PATH=/path/to/pico-sdk ..
 make -j4
 `
-1. Hold down the **BOOTSEL** tactile switch (SW2) on the PCB while connecting it to your PC via USB-C.
+1. Hold down the **BOOTSEL** tactile switch (SW2) on the PCB while connecting to a PC via USB-C.
 2. Drag and drop the generated **logic_analyzer.uf2** file onto the RPI-RP2 drive.
 
 ### Standalone Handheld Operation:
 1. Connect any 5V USB-C power source (power bank or charger).
-2. Connect the probe GND pin to your Device Under Test (DUT) ground.
+2. Connect the probe GND pin to the target system ground.
 3. Attach probe channels CH0–CH7 to the target digital lines.
 4. If testing an un-terminated ^2C$ bus, turn **DIP Switch 1 & 2** ON to activate the .2\,\text{k}\Omega$ pull-ups.
 5. Use the **5-Way Joystick**:
