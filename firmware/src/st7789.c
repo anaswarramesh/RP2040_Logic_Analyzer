@@ -1,4 +1,4 @@
-﻿#include st7789.h
+#include st7789.h
 #include hardware/pwm.h
 #include hardware/gpio.h
 
@@ -97,10 +97,10 @@ void st7789_set_backlight(uint8_t brightness) {
 }
 
 void st7789_init(void) {
- // 62.5 MHz SPI Clock (RP2040 clk_peri / 2)
- spi_init(LCD_SPI_PORT, 62500000);
- gpio_set_function(PIN_LCD_SCK, GPIO_FUNC_SPI);
- gpio_set_function(PIN_LCD_MOSI, GPIO_FUNC_SPI);
+    // 31.25 MHz SPI Clock (RP2040 clk_peri / 4) provides robust signal margins with 22 Ohm damping resistors
+    spi_init(LCD_SPI_PORT, 31250000);
+    gpio_set_function(PIN_LCD_SCK, GPIO_FUNC_SPI);
+    gpio_set_function(PIN_LCD_MOSI, GPIO_FUNC_SPI);
 
  gpio_init(PIN_LCD_CS);
  gpio_set_dir(PIN_LCD_CS, GPIO_OUT);

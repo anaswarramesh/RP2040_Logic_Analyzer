@@ -1,8 +1,9 @@
-﻿#include capture.h
+#include capture.h
 #include hardware/clocks.h
 #include logic_analyzer.pio.h
 
-uint8_t capture_buffer[MAX_SAMPLE_BUFFER_SIZE] __attribute__((aligned(4)));
+// Dedicated DMA Capture Buffer isolated to prevent crossbar bus contention with Core 1 / Display
+uint8_t capture_buffer[MAX_SAMPLE_BUFFER_SIZE] __attribute__((aligned(4), section(".uninitialized_data")));
 volatile capture_config_t g_capture_cfg = {
     .sample_rate_hz = 10000000, // Default 10 MSPS
     .sample_count = 10000,
