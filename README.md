@@ -7,64 +7,75 @@
 ![Display](https://img.shields.io/badge/Display-2.4%22%20IPS%20TFT%20ST7789-purple.svg)
 ![Firmware](https://img.shields.io/badge/Firmware-Pico%20C%2FC%2B%2B%20SDK-brightgreen.svg)
 
-A high-speed, 8-channel digital logic analyzer designed around the **Raspberry Pi RP2040** microcontroller. This instrument operates both as a **standalone, handheld on-PCB visualizer** with an integrated 2.4 color IPS LCD and 5-way joystick navigation, or as a **high-throughput USB logic analyzer** compatible with open-source logic analysis suites like [Sigrok / PulseView](https://sigrok.org/).
+An open-hardware, 8-channel digital logic analyzer designed around the **Raspberry Pi RP2040** microcontroller. It works both as a **standalone, handheld instrument** with a built-in 2.4 color IPS display, and as a **USB logic analyzer** connected to a PC with software like [Sigrok / PulseView](https://sigrok.org/).
 
 ---
 
 ## 🌟 Key Features
 
-* **Dual-Mode Operation:**
- * **Standalone Mode:** View 8-channel waveforms, trigger states, timebase cursors, and real-time protocol decoding directly on the 2.4 IPS screen without needing a PC.
-  * **USB Host Mode:** Stream digital waveforms to PC via USB 2.0 Full-Speed using standard Sigrok/PulseView drivers.
-* **Wide Voltage Range (1.8V to 5.5V):** Powered by an onboard 74LVC245A high-speed level translator and input buffer, safe for 1.8V, 2.5V, 3.3V, and 5.0V logic systems.
-* **Single-Cycle PIO Capture:** Probe channels mapped to consecutive pins (GPIO0 to GPIO7) allowing the RP2040 Programmable I/O (PIO) state machine to capture all 8 lines in 1 clock cycle (in pins, 8).
-* **Robust Input Protection:**
-  * \,\Omega$ series current-limiting resistors on each channel.
-  * Low-capacitance (.0\,\text{pF}$) PRTR5V0U2X TVS clamping diode array.
-* **Switchable ^2C$ Bus Pull-Ups:** Onboard 2-position DIP switch connects .2\,\text{k}\Omega$ pull-ups to CH0 (SDA) and CH1 (SCL) for debugging un-terminated buses.
-* **Clean Power Subsystem:** 600mA Low-Dropout AP2112K-3.3 regulator with .5\,\text{A}$ PTC polyfuse and USBLC6-2SC6 high-speed USB ESD protection.
+* **Dual Operation Modes:**
+ * **Standalone Mode:** Capture, view, and zoom into waveforms on the built-in 2.4 LCD screen using the 5-way navigation joystick without a computer.
+  * **USB PC Mode:** Stream live logic data over USB to PC software (Sigrok / PulseView) for advanced decoding.
+* **Universal 1.8V to 5.5V Logic Support:** High-speed 74LVC245A buffer safely level-shifts signals from 1.8V, 2.5V, 3.3V, and 5.0V systems down to the RP2040 3.3V core.
+* **Single-Cycle PIO Capture:** Probe channels connect directly to consecutive pins (GPIO0 to GPIO7), allowing the RP2040 Programmable I/O (PIO) state machine to sample all 8 lines simultaneously in 1 clock cycle (in pins, 8).
+* **Input Protection:** \,\Omega$ series resistors and low-capacitance PRTR5V0U2X TVS diode clamps protect against static and overvoltage.
+* **Switchable ^2C$ Pull-Ups:** 2-position DIP switch enables onboard .2\,\text{k}\Omega$ pull-up resistors on Channel 0 (SDA) and Channel 1 (SCL).
 
 ---
 
 ## 📐 System Architecture
 
+The instrument is organized into 3 clear operational pipelines: **Signal Ingestion**, **Core Processing**, and **Dual Output (LCD & USB)**.
+
+### 1. End-to-End Signal & Data Pipeline
+
+`mermaid
+flowchart TD
+    subgraph STAGE1[Stage 1: Signal Ingestion & Protection]
+        A[External Probe Inputs (CH0 - CH7)<br/>(1.8V to 5.5V Logic Signals)] --> B[100Ω Series Resistors & TVS Diodes<br/>(Current Limiting & ESD Clamping)]
+        B --> C[74LVC245A Level Buffer (@ 3.3V)<br/>(Translates all inputs safely to 3.3V)]
+    end
+
+    subgraph STAGE2[Stage 2: High-Speed Capture & Buffering]
+        C -->|8 Parallel Lines (GPIO0..7)| D[RP2040 PIO State Machine<br/>(Samples 8 channels in 1 clock cycle)]
+        D -->|32-bit Words (4 Samples/Word)| E[Hardware DMA Controller<br/>(Zero-CPU RAM Transfer)]
+        E --> F[264 KB Internal SRAM<br/>(Ring Buffer Storage)]
+    end
+
+    subgraph STAGE3[Stage 3: Dual-Core Output & Visualization]
+        F --> G[Core 0: USB & Protocol Engine<br/>(Handles PC Sigrok/SUMP Commands)]
+        F --> H[Core 1: Display & GUI Engine<br/>(Draws waveforms & decodes protocols)]
+        
+        G -->|USB 2.0 (90Ω Diff Pair)| I[PC (PulseView / Sigrok Software)]
+        H -->|62.5MHz SPI1 + DMA| J[2.4-inch Color IPS LCD (ST7789)]
+        K[5-Way Navigation Joystick] -->|Zoom / Cursor / Run-Stop| H
+    end
+`
+
+#### How Data Moves Through the System:
+1. **Signal Conditioning:** External probe signals (1.8V–5.5V) pass through current-limiting resistors and ESD TVS diodes into the 74LVC245A buffer, which outputs clean 3.3V logic signals.
+2. **Hardware Sampling:** The RP2040 PIO state machine reads all 8 GPIO pins (GPIO0–GPIO7) in a single clock cycle, packing four 8-bit samples into 32-bit words.
+3. **Zero-Overhead DMA:** The DMA controller transfers sample words directly from the PIO FIFO into a 64KB ring buffer in SRAM without using CPU cycles.
+4. **Dual Output Processing:**
+   * **Core 0** monitors the USB port for commands from Sigrok/PulseView and streams sample data over USB CDC.
+   * **Core 1** reads the SRAM buffer, renders the 8 waveform traces on the 2.4 color LCD at ~33 FPS, and responds to 5-way joystick inputs.
+
+---
+
+### 2. Power Distribution Architecture
+
 `mermaid
 flowchart LR
-    subgraph INPUTS[Input Probe Stage]
-        PROBES[8x Probe Inputs<br/>(1.8V - 5.5V)]
-        DAMPING[100Ω Resistors<br/>& TVS Protection]
-        PULLUPS[DIP Switch 2.2kΩ<br/>(I2C SDA / SCL)]
-        BUFFER[74LVC245A Buffer<br/>(VCC = 3.3V)]
-    end
-
-    subgraph MCU[RP2040 Microcontroller]
-        PIO[PIO Engine<br/>(Single-cycle 8-bit In)]
-        RAM[264KB Ring Buffer]
-        CORE1[Core 1 Graphics<br/>& Protocol Engine]
-    end
-
-    subgraph UI[Onboard User Interface]
-        LCD[2.4-inch IPS LCD<br/>(ST7789 320x240)]
-        JOYSTICK[5-Way Nav Switch<br/>(Zoom, Pan, Run/Stop)]
-    end
-
-    subgraph POWER_USB[Power & USB]
-        USBC[USB-C Receptacle<br/>(5.1k CC Pull-downs)]
-        LDO[AP2112K-3.3 LDO<br/>(600mA Regulator)]
-    end
-
-    PROBES --> DAMPING
-    DAMPING --> PULLUPS
-    PULLUPS --> BUFFER
-    BUFFER == RP_LOGIC[0..7]<br/>(GPIO0..GPIO7) ==> PIO
-    PIO --> RAM
-    RAM --> CORE1
-    CORE1 == High-Speed SPI1 + DMA ==> LCD
-    JOYSTICK -->|GPIO16..19, 28| CORE1
-    USBC --> LDO
-    LDO ==>|+3.3V System Rail| MCU
-    LDO ==>|+3.3V System Rail| UI
-    LDO ==>|+3.3V System Rail| INPUTS
+ USB_IN[USB-C 5V Input<br/>(Charger / Power Bank / PC)] --> FUSE[0.5A PTC Polyfuse<br/>(Overcurrent Protection)]
+ FUSE --> LDO[AP2112K-3.3 LDO Regulator<br/>(600mA Low Noise)]
+ 
+ LDO -->|+3.3V Main Rail| BUFFER[74LVC245A Buffer]
+ LDO -->|+3.3V Main Rail| LCD[2.4-inch IPS Display]
+ LDO -->|+3.3V Main Rail| FLASH[16MB QSPI Flash]
+ LDO -->|+3.3V Main Rail| MCU_IO[RP2040 IOVDD / VREG_IN]
+ 
+ MCU_IO --> MCU_INT_LDO[RP2040 Internal LDO]
+ MCU_INT_LDO -->|+1.1V Core Rail| MCU_CORE[RP2040 DVDD (Core Logic)]
 `
 
 ---
@@ -97,39 +108,27 @@ flowchart LR
 
 ---
 
-## 💻 Firmware Architecture & Directory Layout
+## 💻 Firmware Structure
 
-The firmware source files are structured in the **[/firmware](firmware/)** folder:
+The firmware source is in the **[/firmware](firmware/)** folder:
 
 `
 firmware/
-├── CMakeLists.txt              # Pico SDK CMake build configuration
-├── pico_sdk_import.cmake       # Automatic SDK importer
-├── README.md                   # Firmware-specific build guide
+├── CMakeLists.txt # Pico SDK CMake build configuration
+├── pico_sdk_import.cmake # Automatic SDK importer
+├── README.md # Firmware-specific build guide
 └── src/
-    ├── main.c                  # Dual-core bootloader & task scheduler
-    ├── logic_analyzer.pio      # PIO assembly program (single-cycle 8-bit in)
-    ├── capture.c / capture.h   # DMA ring buffer & trigger management
-    ├── st7789.c / st7789.h     # 62.5MHz SPI1 LCD driver with RGB565 rendering
-    ├── ui.c / ui.h             # 8-trace waveform drawing & 5-way joystick handling
-    └── sigrok_protocol.c / .h  # SUMP protocol for PulseView/Sigrok over USB CDC
+ ├── main.c # Dual-core bootloader & task scheduler
+ ├── logic_analyzer.pio # PIO assembly program (single-cycle 8-bit in)
+ ├── capture.c / capture.h # DMA ring buffer & trigger management
+ ├── st7789.c / st7789.h # 62.5MHz SPI1 LCD driver with RGB565 rendering
+ ├── ui.c / ui.h # 8-trace waveform drawing & 5-way joystick handling
+ └── sigrok_protocol.c / .h # SUMP protocol for PulseView/Sigrok over USB CDC
 `
-
-### Dual-Core Processing Architecture
-* **Core 0 (Capture & USB Engine):**
-  * Manages the PIO state machine and DMA buffer transfers.
-  * Processes USB CDC communication and SUMP commands from PC logic software.
-  * Re-arms continuous capture cycles in standalone mode.
-* **Core 1 (Graphics & UI Loop):**
-  * Drives the 2.4 \times240$ ST7789 IPS display over hardware SPI1.
- * Polls the 5-way navigation joystick with debouncing.
- * Renders 8 digital waveform traces, timebase grid, cursors, and protocol decode banner at ~33 FPS.
 
 ---
 
 ## 🗂️ Altium Designer Project Structure
-
-This project uses a **Hierarchical Schematic Architecture** to enforce modular design:
 
 `
 RP2040_Logic_Analyzer.PrjPcb
