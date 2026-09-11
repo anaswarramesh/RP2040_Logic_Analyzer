@@ -7,8 +7,8 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Senior Hardware Architect</Author>
-  <Title>8-Channel Logic Analyzer Bill of Materials</Title>
-  <Created>2026-09-11T14:30:00Z</Created>
+  <Title>8-Channel Logic Analyzer Complete Bill of Materials</Title>
+  <Created>2026-09-11T14:40:00Z</Created>
   <Company>RP2040 Logic Analyzer Project</Company>
  </DocumentProperties>
  <Styles>
@@ -22,7 +22,7 @@
   </Style>
   <Style ss:ID="TitleStyle">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#1F497D" ss:Bold="1"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="13" ss:Color="#1F497D" ss:Bold="1"/>
   </Style>
   <Style ss:ID="HeaderStyle">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
@@ -73,7 +73,7 @@
    <Column ss:Width="130"/>
    
    <Row ss:Height="25">
-    <Cell ss:MergeAcross="9" ss:StyleID="TitleStyle"><Data ss:Type="String">8-Channel Standalone Logic Analyzer - Master Bill of Materials</Data></Cell>
+    <Cell ss:MergeAcross="9" ss:StyleID="TitleStyle"><Data ss:Type="String">8-Channel Standalone Logic Analyzer - Master Bill of Materials (All 89 Components)</Data></Cell>
    </Row>
    <Row ss:Height="22">
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Item</Data></Cell>
@@ -88,7 +88,6 @@
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Schematic Block</Data></Cell>
    </Row>
 
-   <!-- U4 RP2040 -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U4</Data></Cell>
@@ -101,8 +100,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">IC - MCU</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">02_MCU_RP2040</Data></Cell>
    </Row>
-
-   <!-- U9 Buffer -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U9</Data></Cell>
@@ -115,8 +112,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">IC - Level Shifter</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">03_Input_Buffer</Data></Cell>
    </Row>
-
-   <!-- U2 LDO -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">3</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U2</Data></Cell>
@@ -129,8 +124,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">IC - Power</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">01_Power_USB</Data></Cell>
    </Row>
-
-   <!-- U3 Flash -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">4</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U3</Data></Cell>
@@ -143,8 +136,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">IC - Memory</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">02_MCU_RP2040</Data></Cell>
    </Row>
-
-   <!-- U1 USB TVS -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">5</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U1</Data></Cell>
@@ -157,8 +148,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Protection - TVS</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">01_Power_USB</Data></Cell>
    </Row>
-
-   <!-- U5..U10 TVS -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">6</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U5, U6, U7, U8, U10</Data></Cell>
@@ -171,8 +160,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Protection - TVS</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">03_Input_Buffer</Data></Cell>
    </Row>
-
-   <!-- Q1 MOSFET -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">7</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Q1</Data></Cell>
@@ -185,8 +172,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Transistor - MOSFET</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">04_Display_UI</Data></Cell>
    </Row>
-
-   <!-- LED1 -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">8</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">LED1</Data></Cell>
@@ -199,8 +184,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Optoelectronics</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">01_Power_USB</Data></Cell>
    </Row>
-
-   <!-- DISP1 -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">9</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">DISP1</Data></Cell>
@@ -213,8 +196,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Display</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">04_Display_UI</Data></Cell>
    </Row>
-
-   <!-- J1 USB-C -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">10</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">J1</Data></Cell>
@@ -227,8 +208,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Connector - USB</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">01_Power_USB</Data></Cell>
    </Row>
-
-   <!-- J2 SWD -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">11</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">J2</Data></Cell>
@@ -241,8 +220,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Connector - Header</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">02_MCU_RP2040</Data></Cell>
    </Row>
-
-   <!-- J3 Probes -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">12</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">J3</Data></Cell>
@@ -255,8 +232,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Connector - Header</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">03_Input_Buffer</Data></Cell>
    </Row>
-
-   <!-- Switches -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">13</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SW1, SW2</Data></Cell>
@@ -293,8 +268,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Switch - Joystick</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">04_Display_UI</Data></Cell>
    </Row>
-
-   <!-- F1, Y1, FB1 -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">16</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">F1</Data></Cell>
@@ -331,8 +304,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Filter - Ferrite</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">02_MCU_RP2040</Data></Cell>
    </Row>
-
-   <!-- Resistors -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">19</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R1, R2</Data></Cell>
@@ -465,8 +436,6 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">04_Display_UI</Data></Cell>
    </Row>
-
-   <!-- Capacitors -->
    <Row>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">30</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C1</Data></Cell>
@@ -531,18 +500,22 @@
  </Worksheet>
 
  <!-- ========================================================================= -->
- <!-- WORKSHEET 2: BLOCK 1 - POWER & USB                                        -->
+ <!-- WORKSHEET 2: BLOCK 1 - POWER & USB (ALL 13 LINE ITEMS / 18 PARTS)         -->
  <!-- ========================================================================= -->
  <Worksheet ss:Name="01_Power_USB">
   <Table ss:DefaultRowHeight="20">
    <Column ss:Width="40"/>
-   <Column ss:Width="120"/>
+   <Column ss:Width="130"/>
    <Column ss:Width="45"/>
-   <Column ss:Width="90"/>
-   <Column ss:Width="280"/>
+   <Column ss:Width="95"/>
+   <Column ss:Width="300"/>
    <Column ss:Width="120"/>
-   <Column ss:Width="140"/>
-   <Column ss:Width="90"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="95"/>
+   
+   <Row ss:Height="25">
+    <Cell ss:MergeAcross="7" ss:StyleID="TitleStyle"><Data ss:Type="String">Block 1: Power &amp; USB-C Subsystem Components (18 Parts)</Data></Cell>
+   </Row>
    <Row ss:Height="22">
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Item</Data></Cell>
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Designator</Data></Cell>
@@ -578,7 +551,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">J1</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">TYPE-C-16P</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">16-Pin USB Type-C Receptacle</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">16-Pin USB Type-C Receptacle (USB 2.0)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Korean Hroparts</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">TYPE-C-31-M-12</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Hybrid SMT/TH</Data></Cell>
@@ -588,7 +561,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">F1</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0.5A</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resettable PTC Polyfuse (0.5A Hold / 1.0A Trip)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resettable PTC Polyfuse (0.5A Hold / 1.0A Trip 6V)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Bourns</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">MF-MSMF050-2</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0805</Data></Cell>
@@ -598,27 +571,111 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">LED1</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Green</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SMD Green Power Indicator LED</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SMD Green Power Status Indicator LED</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Lite-On</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">LTST-C190GKT</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0603</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R1, R2</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">5.1k</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 5.1k Ohm 1% 1/16W (USB-C CC1/CC2 Pull-downs)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402FR-075K1L</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R3</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1M</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 1M Ohm 5% 1/10W (100V Shield Isolation)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0603JR-071ML</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0603</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R4</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1.5k</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 1.5k Ohm 5% 1/16W (LED1 Current Limiter)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402JR-071K5L</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R_USB1, R_USB2</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">27R</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 27 Ohm 1% 1/16W (USB D+/D- Damping)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402FR-0727RL</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C1</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">4.7nF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 4.7nF 10% 1kV X7R (Shield Ground)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">TDK</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C2012X7R3A472K085AE</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0805</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C2, C4</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">10uF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 10uF 10% 10V X7R (LDO Filter)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM21BR71A106KE51L</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0805</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C5</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1.0uF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 1.0uF 10% 10V X7R (LDO Output)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM155R71A105KE15D</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C3, C6</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">100nF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 100nF 10% 16V X7R (High-Freq Bypass)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM155R71C104KA88D</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
    </Row>
   </Table>
  </Worksheet>
 
  <!-- ========================================================================= -->
- <!-- WORKSHEET 3: BLOCK 2 - MCU & CORE                                         -->
+ <!-- WORKSHEET 3: BLOCK 2 - MCU & CORE (ALL 13 LINE ITEMS / 34 PARTS)          -->
  <!-- ========================================================================= -->
  <Worksheet ss:Name="02_MCU_RP2040">
   <Table ss:DefaultRowHeight="20">
    <Column ss:Width="40"/>
-   <Column ss:Width="120"/>
+   <Column ss:Width="160"/>
    <Column ss:Width="45"/>
-   <Column ss:Width="90"/>
-   <Column ss:Width="280"/>
+   <Column ss:Width="95"/>
+   <Column ss:Width="300"/>
    <Column ss:Width="120"/>
-   <Column ss:Width="140"/>
-   <Column ss:Width="90"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="95"/>
+   
+   <Row ss:Height="25">
+    <Cell ss:MergeAcross="7" ss:StyleID="TitleStyle"><Data ss:Type="String">Block 2: RP2040 MCU, Flash, Clock &amp; Decoupling (34 Parts)</Data></Cell>
+   </Row>
    <Row ss:Height="22">
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Item</Data></Cell>
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Designator</Data></Cell>
@@ -634,7 +691,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U4</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RP2040</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Dual-Core ARM Cortex-M0+ MCU</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Dual-Core ARM Cortex-M0+ MCU (133MHz, 264KB SRAM)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Raspberry Pi</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RP2040</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">QFN-56 (7x7mm)</Data></Cell>
@@ -644,7 +701,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U3</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">16MB (128Mbit)</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">16MB 133MHz Quad-SPI NOR Flash</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">16MB 133MHz Quad-SPI NOR Flash Memory</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Winbond</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">W25Q128JVSIQ</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SOIC-8 (208-mil)</Data></Cell>
@@ -654,7 +711,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Y1</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">12.000MHz</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">12.000 MHz Crystal (+-10ppm, 18pF)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">12.000 MHz Crystal Oscillator (+-10ppm, 18pF)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Abracon</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">ABM8G-12.000MHZ-18</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">4-SMD (3.2x2.5mm)</Data></Cell>
@@ -664,7 +721,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">FB1</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">120R @ 100MHz</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Ferrite Bead Filter (500mA)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Ferrite Bead Filter (ADC_AVDD Isolation 500mA)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">BLM18PG121SN1D</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0603</Data></Cell>
@@ -674,7 +731,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">J2</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1x03 Header</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">3-Pin 2.54mm SWD Debug Header</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">3-Pin 2.54mm Pin Header (SWD Debug: CLK, DIO, GND)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Amphenol</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">68000-103HLF</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1x03 2.54mm</Data></Cell>
@@ -684,27 +741,101 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SW1, SW2</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SPST Tact</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SMT Tactile Switches (RUN, BOOT)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SMT Momentary Tactile Switches (RUN Reset, BOOTSEL)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C&amp;K</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">PTS645SL43SMTR92</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">6.0x3.5mm SMT</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R5, R11</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">10k</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 10k Ohm 5% 1/16W (Flash /CS &amp; RUN Pull-up)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402JR-0710KL</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R6, R7, R8, R9, R10</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">33R</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 33 Ohm 5% 1/16W (QSPI SCLK, SD0..3 Damping)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402JR-0733RL</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R12, R_OSC</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1k</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 1k Ohm 5% 1/16W (BOOTSEL Protection &amp; XTAL Drive)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402JR-071KL</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C9, C10</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">27pF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 27pF 5% 50V NP0/C0G (XTAL Load)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM1555C1H270JA01D</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C15</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">10uF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 10uF 10% 10V X7R (IOVDD Bulk Storage)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM21BR71A106KE51L</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0805</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C17, C19, C23</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1.0uF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 1.0uF 10% 10V X7R (VREG_IN, VREG_OUT, ADC)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM155R71A105KE15D</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C7, C8, C11..C14, C16, C18, C20..C22, C24</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">100nF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 100nF 10% 16V X7R (Pin Decoupling)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM155R71C104KA88D</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
    </Row>
   </Table>
  </Worksheet>
 
  <!-- ========================================================================= -->
- <!-- WORKSHEET 4: BLOCK 3 - INPUT BUFFER                                       -->
+ <!-- WORKSHEET 4: BLOCK 3 - INPUT BUFFER (ALL 8 LINE ITEMS / 22 PARTS)         -->
  <!-- ========================================================================= -->
  <Worksheet ss:Name="03_Input_Buffer">
   <Table ss:DefaultRowHeight="20">
    <Column ss:Width="40"/>
-   <Column ss:Width="120"/>
+   <Column ss:Width="160"/>
    <Column ss:Width="45"/>
-   <Column ss:Width="90"/>
-   <Column ss:Width="280"/>
+   <Column ss:Width="95"/>
+   <Column ss:Width="300"/>
    <Column ss:Width="120"/>
-   <Column ss:Width="140"/>
-   <Column ss:Width="90"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="95"/>
+   
+   <Row ss:Height="25">
+    <Cell ss:MergeAcross="7" ss:StyleID="TitleStyle"><Data ss:Type="String">Block 3: Signal Conditioning &amp; Buffer Subsystem (22 Parts)</Data></Cell>
+   </Row>
    <Row ss:Height="22">
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Item</Data></Cell>
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Designator</Data></Cell>
@@ -720,8 +851,8 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U9</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">74LVC8T245</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">8-Bit Dual-Supply Level Shifter (1.2V-5.5V)</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Nexperia</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">8-Bit Dual-Supply Level-Shifting Transceiver (1.2V–5.5V)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Nexperia / TI</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">74LVC8T245PW</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">TSSOP-24</Data></Cell>
    </Row>
@@ -730,7 +861,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">U5, U6, U7, U8, U10</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">5</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">PRTR5V0U2X</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Dual TVS Clamp Diodes (1pF, Probes + VREF)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Dual Ultra-Low Capacitance TVS Clamp Diodes (1pF)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Nexperia</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">PRTR5V0U2X</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SOT-143B</Data></Cell>
@@ -740,7 +871,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">J3</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1x12 Header</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">12-Pin 2.54mm Header (VREF + 8 Ch + 3 GND)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">12-Pin 2.54mm Header (VREF + 8 Channels + 3 GND)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Amphenol</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">68000-112HLF</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1x12 2.54mm</Data></Cell>
@@ -750,27 +881,71 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SW3</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">2-Pos DIP</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">2-Position SMT DIP Switch (I2C Pull-ups)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">2-Position SMT Slide DIP Switch (I2C Pull-ups)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Wurth Elektronik</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">418121160802</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">2-Pos DIP</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R_IN0..R_IN7</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">100R</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 100 Ohm 1% 1/16W (Probe Input Damping &amp; Limit)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402FR-07100RL</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R_PU1, R_PU2</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">2.2k</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 2.2k Ohm 1% 1/16W (Switchable I2C Pull-ups)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402FR-072K2L</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C26, C32</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">1.0uF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 1.0uF 10% 10V X7R (VCCA &amp; VCCB Rail)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM155R71A105KE15D</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C25, C33</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">100nF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 100nF 10% 16V X7R (VCCA &amp; VCCB Bypass)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM155R71C104KA88D</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
    </Row>
   </Table>
  </Worksheet>
 
  <!-- ========================================================================= -->
- <!-- WORKSHEET 5: BLOCK 4 - DISPLAY & UI                                       -->
+ <!-- WORKSHEET 5: BLOCK 4 - DISPLAY & UI (ALL 7 LINE ITEMS / 15 PARTS)         -->
  <!-- ========================================================================= -->
  <Worksheet ss:Name="04_Display_UI">
   <Table ss:DefaultRowHeight="20">
    <Column ss:Width="40"/>
-   <Column ss:Width="120"/>
+   <Column ss:Width="160"/>
    <Column ss:Width="45"/>
-   <Column ss:Width="90"/>
-   <Column ss:Width="280"/>
+   <Column ss:Width="95"/>
+   <Column ss:Width="300"/>
    <Column ss:Width="120"/>
-   <Column ss:Width="140"/>
-   <Column ss:Width="90"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="95"/>
+   
+   <Row ss:Height="25">
+    <Cell ss:MergeAcross="7" ss:StyleID="TitleStyle"><Data ss:Type="String">Block 4: Display &amp; User Interface Controls (15 Parts)</Data></Cell>
+   </Row>
    <Row ss:Height="22">
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Item</Data></Cell>
     <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Designator</Data></Cell>
@@ -796,7 +971,7 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SW4..SW8</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">5-Way Joystick</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">5-Way Directional Navigation Switch</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">5-Way Directional Navigation Switch (Up/Dn/L/R/Enter)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">ALPS Alpine</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SKRHAAE010</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">5-Way SMT</Data></Cell>
@@ -806,10 +981,50 @@
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Q1</Data></Cell>
     <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">2N7002</Data></Cell>
-    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">N-Channel 60V 300mA MOSFET (Backlight)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">N-Channel 60V 300mA MOSFET (Backlight Switch)</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">ON Semiconductor</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">2N7002</Data></Cell>
     <Cell ss:StyleID="DataStyle"><Data ss:Type="String">SOT-23</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R_LCD1, R_LCD2, R_LCD3</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">22R</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 22 Ohm 1% 1/16W (LCD SPI SCK, MOSI, CS Damping)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402FR-0722RL</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R13, R14, R15, R16, R17</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">10k</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 10k Ohm 5% 1/16W (Joystick Pull-up Resistors)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0402JR-0710KL</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">R18</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">10R</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Resistor 10 Ohm 5% 1/8W (Backlight Ballast Resistor)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Yageo</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">RC0805JR-0710RL</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0805</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">C27, C28, C29, C30, C31</Data></Cell>
+    <Cell ss:StyleID="DataCenter"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">100nF</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Capacitor Ceramic 100nF 10% 16V X7R (Button RC Debounce)</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">Murata</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">GRM155R71C104KA88D</Data></Cell>
+    <Cell ss:StyleID="DataStyle"><Data ss:Type="String">0402</Data></Cell>
    </Row>
   </Table>
  </Worksheet>
